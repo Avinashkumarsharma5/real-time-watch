@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Time Clock</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff; /* Light blue background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #333;
+    }
+
+    .clock {
+      text-align: center;
+      background-color: #333; /* Dark background for the clock */
+      color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 250px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      font-family: 'Arial', sans-serif;
+    }
+
+    #time {
+      font-size: 3rem;
+      letter-spacing: 2px;
+      font-weight: bold;
+      color: #FFD700; /* Gold color for the time */
+      transition: color 0.3s ease-in-out;
+    }
+
+    .clock:hover #time {
+      color: #ff4500; /* Change color to orange when hovering over the clock */
+    }
+  </style>
+</head>
+<body>
+  <div id="clock" class="clock">
+    <h1>Real Time Clock</h1>
+    <div id="time"></div>
+  </div>
+
+  <script>
+    function updateClock() {
+      const timeElement = document.getElementById('time');
+      const now = new Date(); // Get current date and time
+
+      let hours = now.getHours(); // Get current hour
+      let minutes = now.getMinutes(); // Get current minutes
+      let seconds = now.getSeconds(); // Get current seconds
+
+      // Add leading zero to hours, minutes, and seconds if they are less than 10
+      hours = hours < 10 ? '0' + hours : hours;
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+
+      // Display the time in the format: HH:MM:SS
+      timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    // Update the clock every second
+    setInterval(updateClock, 1000);
+
+    // Initialize the clock immediately upon page load
+    updateClock();
+  </script>
+</body>
+</html>
+
